@@ -1,6 +1,6 @@
-const createErrorMessage = require("../helpers/createErrorMessage");
+const createErrorMessage = require("../../helpers/createErrorMessage");
 
-const contacts = require("../models/contacts");
+const contacts = require("../../models/contacts");
 const listContacts = async (req, res, next) => {
   try {
     const body = await contacts.listContacts();
