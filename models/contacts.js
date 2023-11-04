@@ -2,7 +2,6 @@ const fs = require("fs/promises");
 const { nanoid } = require("nanoid");
 const path = require("path");
 const checkForDuplicate = require("../helpers/checkForDuplicate");
-const validateContact = require("../helpers/validateContact");
 
 const contactsPath = path.resolve("./models/contacts.json");
 
@@ -46,7 +45,6 @@ const removeContact = async (contactId) => {
 };
 
 const addContact = async ({ name, email, phone }) => {
-  validateContact({ name, email, phone });
   const contact = { id: nanoid(), name, email, phone };
   const data = await fs.readFile(contactsPath);
   const contacts = JSON.parse(data);
@@ -61,7 +59,6 @@ const addContact = async ({ name, email, phone }) => {
 };
 
 const updateContact = async (contactId, { name, email, phone }) => {
-  validateContact({ name, email, phone });
   const data = await fs.readFile(contactsPath);
   const contacts = JSON.parse(data);
   const contactIndex = contacts.findIndex(
