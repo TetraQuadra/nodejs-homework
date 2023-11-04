@@ -1,10 +1,9 @@
 const createErrorMessage = require("../../helpers/createErrorMessage");
-
-const contacts = require("../../models/contacts");
+const Contact = require("../../models/contact");
 
 const getContactById = async (req, res, next) => {
   try {
-    const body = await contacts.getContactById(req.params.contactId);
+    const body = await Contact.findById(req.params.contactId);
     if (!body) {
       throw createErrorMessage(404);
     }
