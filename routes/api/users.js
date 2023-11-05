@@ -21,6 +21,6 @@ router.post(
   userControllers.login
 );
 
-router.get("/test", authenticate);
+router.get("/current", authenticate);
 
 module.exports = router;
