@@ -5,10 +5,16 @@ const listContacts = async (req, res, next) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 20;
     const skip = (page - 1) * limit;
-    const contacts = await Contact.find({ owner: req.user })
-      .skip(skip)
-      .limit(limit)
-      .exec();
+
+    const query = {
+      owner: req.user,
+    };
+
+    if (req.query.favorite === "true") {
+      query.favorite = true;
+    }
+
+    const contacts = await Contact.find(query).skip(skip).limit(limit).exec();
 
     res.status(200).json(contacts);
   } catch (error) {
