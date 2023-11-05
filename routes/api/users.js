@@ -14,13 +14,10 @@ router.post(
   userControllers.register
 );
 
-router.post(
-  "/login",
-  validateData(userSchema),
-
-  userControllers.login
-);
+router.post("/login", validateData(userSchema), userControllers.login);
 
 router.get("/current", authenticate, userControllers.getCurrent);
+
+router.patch("/:userId/subscription", userControllers.updateSubscription);
 
 module.exports = router;
