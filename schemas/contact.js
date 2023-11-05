@@ -7,6 +7,11 @@ const contactSchema = joi.object({
     .string()
     .pattern(/^[0-9() -]+$/)
     .required(),
+  favorite: joi.boolean(),
 });
 
-module.exports = contactSchema;
+const updateFavorite = joi.object({
+  favorite: joi.bool().required(),
+});
+
+module.exports = { contactSchema, updateFavorite };

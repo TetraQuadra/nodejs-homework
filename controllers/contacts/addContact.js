@@ -1,12 +1,11 @@
 const createErrorMessage = require("../../helpers/createErrorMessage");
-
-const contacts = require("../../models/contacts");
+const Contact = require("../../models/contact");
 
 const addContact = async (req, res, next) => {
   try {
-    const response = await contacts.addContact(req.body);
+    const response = await Contact.create(req.body);
     if (!response) {
-      throw createErrorMessage(400);
+      throw createErrorMessage(500);
     }
     res.status(201).json(response);
   } catch (error) {

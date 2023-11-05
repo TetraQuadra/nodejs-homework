@@ -1,17 +1,19 @@
 const createErrorMessage = require("../../helpers/createErrorMessage");
 const Contact = require("../../models/contact");
 
-const updateContact = async (req, res, next) => {
+const updateStatusContact = async (req, res, next) => {
   try {
+    const favorite = { favorite: req.body.favorite };
     const response = await Contact.findByIdAndUpdate(
       req.params.contactId,
-      req.body,
+      favorite,
       {
         new: true,
       }
     );
+    console.log(response);
     if (!response) {
-      throw createErrorMessage(400);
+      throw createErrorMessage(404);
     }
     res.status(201).json(response);
   } catch (error) {
@@ -20,4 +22,4 @@ const updateContact = async (req, res, next) => {
   }
 };
 
-module.exports = updateContact;
+module.exports = updateStatusContact;
