@@ -2,7 +2,7 @@ const createErrorMessage = require("../../helpers/createErrorMessage");
 const Contact = require("../../models/contact");
 
 const addContact = async (req, res, next) => {
-  req.body.owner = req.currentUserId;
+  req.body.owner = req.user;
   try {
     const response = await Contact.create(req.body);
     if (!response) {

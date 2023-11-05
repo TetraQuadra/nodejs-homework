@@ -14,7 +14,7 @@ const authenticate = async (req, res, next) => {
     if (!user || user.token !== token) {
       throw res.status(401).json({ message: "Not authorized" });
     }
-    req.currentUserId = user._id;
+    req.user = user._id;
     next();
   } catch (error) {
     res.status(401).json({ message: "Not authenticated" });

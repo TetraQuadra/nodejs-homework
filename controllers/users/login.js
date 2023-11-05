@@ -7,11 +7,11 @@ const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(401).json({ message: "Email or password is wrong" });
+      throw createErrorMessage(401, "Email or password is wrong");
     }
 
     if (!(await comparePass(req.body.password, user.password))) {
-      return res.status(401).json({ message: "Email or password is wrong" });
+      throw createErrorMessage(401, "Email or password is wrong");
     }
     const token = generateToken(user._id);
     const writeTokenResponse = await User.updateOne(
@@ -29,8 +29,8 @@ const login = async (req, res, next) => {
       },
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Unhandled login error" });
+    const { status = 500, message = "Internal server error" } = error;
+    res.status(status).json({ status, message });
   }
 };
 

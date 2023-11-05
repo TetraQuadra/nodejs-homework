@@ -15,7 +15,8 @@ const register = async (req, res, next) => {
       },
     });
   } catch (error) {
-    res.status(409).json({ message: "Email in use" });
+    const { status = 500, message = "Internal server error" } = error;
+    res.status(status).json({ status, message });
   }
 };
 
