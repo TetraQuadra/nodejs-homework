@@ -4,7 +4,6 @@ const User = require("../../models/user");
 const getCurrent = async (req, res, next) => {
   try {
     const user = await User.findById(req.user);
-    console.log(user);
     if (!user) {
       throw createErrorMessage(404);
     }

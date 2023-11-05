@@ -4,7 +4,6 @@ const User = require("../../models/user");
 const register = async (req, res, next) => {
   try {
     const response = await User.create(req.body);
-    console.log(response);
     if (!response) {
       throw createErrorMessage(500);
     }

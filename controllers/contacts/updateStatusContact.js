@@ -13,7 +13,6 @@ const updateStatusContact = async (req, res, next) => {
         new: true,
       }
     );
-    console.log(response);
     if (!response) {
       throw createErrorMessage(404);
     }
