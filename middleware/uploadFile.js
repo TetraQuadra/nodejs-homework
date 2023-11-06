@@ -2,9 +2,9 @@ const multer = require("multer");
 const path = require("path");
 
 const storage = multer.diskStorage({
-  destination: path.resolve("temp"),
+  destination: path.resolve("tmp"),
   filename: (req, file, cb) => {
-    const fileName = Date.now() + "temp";
+    const fileName = Date.now() + "-tmp";
     cb(null, fileName);
   },
 });

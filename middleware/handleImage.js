@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const handleImage = async (req, res, next) => {
   try {
-    const image = await jimp.read(path.join("temp", req.file.filename));
+    const image = await jimp.read(path.join("tmp", req.file.filename));
     await image
       .resize(256, 256)
       .write(path.join("public", "avatars", "avatar-" + req.user + ".png"));
