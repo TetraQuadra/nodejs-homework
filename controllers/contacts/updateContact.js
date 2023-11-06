@@ -1,8 +1,10 @@
+const checkIfOwner = require("../../helpers/checkIfOwner");
 const createErrorMessage = require("../../helpers/createErrorMessage");
 const Contact = require("../../models/contact");
 
 const updateContact = async (req, res, next) => {
   try {
+    await checkIfOwner(req);
     const response = await Contact.findByIdAndUpdate(
       req.params.contactId,
       req.body,

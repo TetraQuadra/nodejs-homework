@@ -1,8 +1,10 @@
+const checkIfOwner = require("../../helpers/checkIfOwner");
 const createErrorMessage = require("../../helpers/createErrorMessage");
 const Contact = require("../../models/contact");
 
 const getContactById = async (req, res, next) => {
   try {
+    await checkIfOwner(req);
     const body = await Contact.findById(req.params.contactId);
     if (!body) {
       throw createErrorMessage(404);
