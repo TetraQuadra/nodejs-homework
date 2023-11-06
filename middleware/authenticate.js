@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 const authenticate = async (req, res, next) => {
   const { authorization } = req.headers;
-  if (!authorization.startsWith("Bearer ")) {
+  if (!authorization || !authorization.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Not authenticated" });
   }
   const tokenMatch = authorization.match(/Bearer (.+)/);
