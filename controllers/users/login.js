@@ -9,6 +9,9 @@ const login = async (req, res, next) => {
     if (!user) {
       throw createErrorMessage(401, "Email or password is wrong");
     }
+    if (!user.verify) {
+      throw createErrorMessage(401, "Email not verified");
+    }
     await comparePass(req.body.password, user.password);
     const token = generateToken(user._id);
     const writeTokenResponse = await User.updateOne(
