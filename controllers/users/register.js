@@ -1,8 +1,8 @@
 const gravatar = require("gravatar");
 const { nanoid } = require("nanoid");
 const createErrorMessage = require("../../helpers/createErrorMessage");
-const sendEmail = require("../../helpers/sendEmail");
 const User = require("../../models/user");
+const sendEmail = require("../services/email/sendEmail");
 
 const register = async (req, res, next) => {
   try {

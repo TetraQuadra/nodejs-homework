@@ -1,6 +1,6 @@
 const createErrorMessage = require("../../helpers/createErrorMessage");
-const sendEmail = require("../../helpers/sendEmail");
 const User = require("../../models/user");
+const sendEmail = require("../services/email/sendEmail");
 
 const resendVerifyEmail = async (req, res, next) => {
   try {
